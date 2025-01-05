@@ -168,13 +168,15 @@ def set_loader(opt):
 
 
 def set_model(opt):
+    print('1_1')
     model = SupCEResNet(name=opt.model, num_classes=opt.n_cls)
+    print('1_2')
     criterion = torch.nn.CrossEntropyLoss()
-
+    print('1_3')
     # enable synchronized Batch Normalization
     if opt.syncBN:
         model = apex.parallel.convert_syncbn_model(model)
-
+    print('1_4')
     if torch.cuda.is_available():
         if torch.cuda.device_count() > 1:
             model = torch.nn.DataParallel(model)
