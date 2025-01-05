@@ -180,7 +180,7 @@ def set_model(opt):
             model = torch.nn.DataParallel(model)
         model = model.cuda()
         criterion = criterion.cuda()
-        cudnn.benchmark = True
+        # cudnn.benchmark = True
 
     return model, criterion
 
@@ -292,7 +292,7 @@ def main():
 
     # tensorboard
     logger = tb_logger.Logger(logdir=opt.tb_folder, flush_secs=2)
-
+    print('training started')
     # training routine
     for epoch in range(1, opt.epochs + 1):
         adjust_learning_rate(opt, optimizer, epoch)
