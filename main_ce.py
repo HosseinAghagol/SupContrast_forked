@@ -177,10 +177,7 @@ def set_model(opt):
     if opt.syncBN:
         model = apex.parallel.convert_syncbn_model(model)
     print('1_4')
-    if torch.cuda.is_available():
-        if torch.cuda.device_count() > 1:
-            model = torch.nn.DataParallel(model)
-        model = model.cuda()
+    model.to('cuda')
         # criterion = criterion.cuda()
         # cudnn.benchmark = True
     print('1_5')
