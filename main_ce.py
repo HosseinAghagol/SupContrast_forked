@@ -162,7 +162,7 @@ def set_loader(opt):
         num_workers=opt.num_workers, pin_memory=True, sampler=train_sampler)
     val_loader = torch.utils.data.DataLoader(
         val_dataset, batch_size=256, shuffle=False,
-        num_workers=8, pin_memory=True)
+        num_workers=4, pin_memory=True)
 
     return train_loader, val_loader
 
@@ -283,13 +283,13 @@ def main():
 
     # build data loader
     train_loader, val_loader = set_loader(opt)
-
+    print('1')
     # build model and criterion
     model, criterion = set_model(opt)
-
+    print('2')
     # build optimizer
     optimizer = set_optimizer(opt, model)
-
+    print('3')
     # tensorboard
     logger = tb_logger.Logger(logdir=opt.tb_folder, flush_secs=2)
     print('training started')
