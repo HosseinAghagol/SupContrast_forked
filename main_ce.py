@@ -181,9 +181,9 @@ def set_model(opt):
         if torch.cuda.device_count() > 1:
             model = torch.nn.DataParallel(model)
         model = model.cuda()
-        criterion = criterion.cuda()
+        # criterion = criterion.cuda()
         # cudnn.benchmark = True
-
+    print('1_5')
     return model, criterion
 
 
